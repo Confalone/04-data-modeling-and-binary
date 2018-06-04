@@ -1,24 +1,38 @@
 'use strict';
 
-let buffer = Buffer.from('../assets/bitmap.bmp');
-console.log(buffer);
+const fs = require('fs');
 
-// let fs = require('fs');
 
-// let file = `${__dirname}/bitmap.bmp`;
+module.exports = exports = {};
 
-// console.log(buffer);
+exports.readFile = (path, callback) => {
 
-// fs.readFile(file, (err, data) => {
-//   if (err) { throw err; }
-//   console.log(data);
-// });
+  fs.readFile(path, (err, data) => {
+    if(err) {
+      callback(err);
+    }
+    else {
+      callback(null, data);
+    }
+  });
+};
 
-// let doSomethingWithTheContentsOfTheFile = (err, data) => {
-//   if (err) {
-//     throw err;
-//   }
-//   console.log(data);
-// };
 
-// fs.readFile(file, doSomethingWithTheContentsOfTheFile);
+exports.writeFile = (file, buffer, callback) => {
+
+  fs.writeFile(file, buffer, (err,data) => {
+    if(err) {
+      callback(err);
+    }
+    else{
+      callback(null, data);
+      console.log('new file created');
+    }
+  });
+};
+
+
+
+
+
+
