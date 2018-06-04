@@ -1,8 +1,8 @@
-'use strict';'use strict';
+'use strict'; 'use strict';
 
 let bitReader = require('../src/app.js');
 let BufferData = require('../src/lib/bitmap');
-// let transformer = require('../src/lib/transformation');
+let transformer = require('../src/lib/transformation');
 // let index = require('../index');
 
 
@@ -30,7 +30,7 @@ describe('Bitmap reader', () => {
 
 
   it(' should call the first two chars of the buffer and they should be BM', (done) => {
-    let filePath = __dirname +'/../assets/bitmap.bmp';//?
+    let filePath = __dirname + '/../assets/bitmap.bmp';//?
     bitReader.readFile(filePath, (err, buffer) => {
       let actual = buffer.toString('utf-8', 0, 2);
       let expected = 'BM';
@@ -53,6 +53,32 @@ describe('Bitmap reader', () => {
     });
   });
 
+  it(' should write a new file', (done) => {
+    let filePath = __dirname + '/../assets/bitmap.bmp';
+    bitReader.readFile(filePath, (err, buffer) => {
+      if (err) console.log(err);
+      expect(err).toBeNull();
+      bitReader.writeFile(__dirname + '/../assets/changed/newFile.bmp', buffer, (err, buffer) => {
+        expect(err).toBeNull();
+        done();
+      });
+    });
+  });
+
+  it(' should transform a bitmap', (done) => {
+    let filePath = __dirname + '/../bitmap.bmp';
+    bitReader.readFile(filePath, (err, buffer) => {
+      if (err) console.log(err);
+      expect(err).toBeNull();
+      let testing = new BufferData(buffer);
+      transformer(testing, 'invert', (err, buffer) => {
+        expect(err).toBeNull();
+        // expect(buffer).toBe.length() 
+        // expect()
+        done();
+      });
+    });
+  });
 
 
 });
