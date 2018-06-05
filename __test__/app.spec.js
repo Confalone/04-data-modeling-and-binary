@@ -1,4 +1,4 @@
-'use strict'; 'use strict';
+'use strict';
 
 let bitReader = require('../src/app.js');
 let BufferData = require('../src/lib/bitmap');
