@@ -64,4 +64,5 @@ describe('Bitmap reader', () => {
       });
     });
   });
+
 });
