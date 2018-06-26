@@ -65,20 +65,4 @@ describe('Bitmap reader', () => {
     });
   });
 
-  it(' should transform a bitmap', (done) => {
-    let filePath = __dirname + '/../bitmap.bmp';
-    bitReader.readFile(filePath, (err, buffer) => {
-      if (err) console.log(err);
-      expect(err).toBeNull();
-      let testing = new BufferData(buffer);
-      transformer(testing, 'invert', (err, buffer) => {
-        expect(err).toBeNull();
-        // expect(buffer).toBe.length() 
-        // expect()
-        done();
-      });
-    });
-  });
-
-
 });
